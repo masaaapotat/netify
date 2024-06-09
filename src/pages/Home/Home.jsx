@@ -5,6 +5,7 @@ import hero_banner from "../../assets/hero_banner.jpg";
 import hero_title from "../../assets/hero_title.png";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
+import TitleCards from "../../components/TitleCards/TitleCards";
 
 const Home = () => {
   return (
@@ -24,7 +25,14 @@ const Home = () => {
             <button className="btn"> <PlayArrowIcon/>Play</button>
             <button className="btn dark-btn"> <InfoIcon/>More Info</button>
           </div>
+          <TitleCards/>
         </div>
+      </div>
+      <div className="more-cards">
+      <TitleCards/>
+      <TitleCards/>
+      <TitleCards/>
+      <TitleCards/>
       </div>
     </div>
   );

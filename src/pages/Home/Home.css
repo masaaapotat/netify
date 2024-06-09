@@ -11,7 +11,7 @@
 .hero-caption {
     position: absolute; /* element is positioned relative to its nearest positioned ancestor (.hero). */
     width: 100%; 
-    padding-left: 6%;
+    padding-left: 10px;
     bottom: 0; 
 }
 
@@ -62,4 +62,7 @@
 
 .hero-btn .btn.dark-btn:hover {
     background: #6d6d6e66;
+}
+.more-card{
+    padding: 10px;
 }
