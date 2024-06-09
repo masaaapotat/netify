@@ -28,7 +28,7 @@ const Navbar = () => {
         <div className="navbar-right">
             <SearchIcon className="icon"/>
             <p>Children</p>
-            <NotificationsActiveIcon className="custom-search-icon"/>
+            <NotificationsActiveIcon className="icon"/>
             <div className="navbar-profile">
                 <AccountBoxIcon className="profile"/>
                 <ArrowDropDownIcon />
