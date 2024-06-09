@@ -6,6 +6,7 @@ import hero_title from "../../assets/hero_title.png";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
 import TitleCards from "../../components/TitleCards/TitleCards";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   return (
@@ -34,6 +35,7 @@ const Home = () => {
       <TitleCards title={'Upcoming'}/>
       <TitleCards title={'Top Pics for you'}/>
       </div>
+      <Footer/>
     </div>
   );
 };
