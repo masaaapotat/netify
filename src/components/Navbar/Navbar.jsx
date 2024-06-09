@@ -32,6 +32,9 @@ const Navbar = () => {
             <div className="navbar-profile">
                 <AccountBoxIcon className="profile"/>
                 <ArrowDropDownIcon />
+                <div className="dropdown">
+                    <p>Sign Out of Netify</p>
+                </div>
 
             </div>
             <img src='' alt='' className=''/>

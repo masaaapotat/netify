@@ -46,4 +46,31 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    /* position: relative:
+- The element is positioned relative to its normal position. */
+    position: relative;
+}
+.navbar .dropdown{
+    /* unaeza toa kwa the normal flow */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: max-content;
+    background: #191919; ;
+    padding: 18px 22px;
+    border-radius: 2px;
+    text-decoration: underline;
+    /*  The z-index property controls the stacking order of elements.
+- Elements with a higher z-index are displayed in front */
+    z-index: 1;
+    /* to hide the sign out text */
+    display: none;
+
+}
+.navbar .dropdown p{
+    font-size: 13px;
+    cursor: pointer;
+}
+.navbar-profile:hover .dropdown{
+    display: block;
 }
