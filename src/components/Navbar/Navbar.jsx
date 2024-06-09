@@ -1,6 +1,10 @@
 import React from 'react'
 import './Navbar.css'
 import logo from '../../assets/mylogo.jpg'
+import SearchIcon from '@mui/icons-material/Search';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
 
@@ -20,7 +24,18 @@ const Navbar = () => {
             </ul>
 
         </div>
-        <div className="navbar-right"></div>
+        {/* icons */}
+        <div className="navbar-right">
+            <SearchIcon className="icon"/>
+            <p>Children</p>
+            <NotificationsActiveIcon className="custom-search-icon"/>
+            <div className="navbar-profile">
+                <AccountBoxIcon className="profile"/>
+                <ArrowDropDownIcon />
+
+            </div>
+            <img src='' alt='' className=''/>
+        </div>
     </div>
   )
 }
