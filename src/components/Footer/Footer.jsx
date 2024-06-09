@@ -16,7 +16,10 @@ const Footer = () => {
       </div>
       {/* footer links */}
       <ul>
-        <li>Audio Description </li>
+        <li>
+          <a href="#!">Audio Description</a>
+        </li>
+
         <li>
           <a href="#!">FAQ</a>
         </li>
@@ -65,7 +68,9 @@ const Footer = () => {
       </ul>
       <p className="copyright-text">
         {/*  Date object to get the current year. */}
-      <p>&copy; {new Date().getFullYear()} Netflix Clone. All rights reserved.</p>
+        <p>
+          &copy; {new Date().getFullYear()} Netflix Clone. All rights reserved.
+        </p>
       </p>
     </div>
   );
