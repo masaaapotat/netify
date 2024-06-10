@@ -3,8 +3,8 @@ import "./Home.css";
 import Navbar from "../../components/Navbar/Navbar";
 import hero_banner from "../../assets/hero_banner.jpg";
 import hero_title from "../../assets/hero_title.png";
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import InfoIcon from '@mui/icons-material/Info';
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import InfoIcon from "@mui/icons-material/Info";
 import TitleCards from "../../components/TitleCards/TitleCards";
 import Footer from "../../components/Footer/Footer";
 
@@ -23,19 +23,27 @@ const Home = () => {
             a inventore saepe aut quas quo ex repudiandae rerum molestiae nihil.
           </p>
           <div className="hero-btn">
-            <button className="btn"> <PlayArrowIcon/>Play</button>
-            <button className="btn dark-btn"> <InfoIcon/>More Info</button>
+            <button className="btn">
+              {" "}
+              <PlayArrowIcon />
+              Play
+            </button>
+            <button className="btn dark-btn">
+              {" "}
+              <InfoIcon />
+              More Info
+            </button>
           </div>
-          <TitleCards/>
+          <TitleCards />
         </div>
       </div>
       <div className="more-cards">
-      <TitleCards title={'Blockbuster Movies'}/>
-      <TitleCards title={'Only on Netflix'}/>
-      <TitleCards title={'Upcoming'}/>
-      <TitleCards title={'Top Pics for you'}/>
+        <TitleCards title={"Blockbuster Movies"} category="top_rated" />
+        <TitleCards title={"Only on Netflix"} category="popular" />
+        <TitleCards title={"Upcoming"} category="upcoming" />
+        <TitleCards title={"Top Pics for you"} category="now_playing" />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
