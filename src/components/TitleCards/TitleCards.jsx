@@ -22,7 +22,7 @@ const TitleCards = ({title, category}) => {
 
   return (
     <div className='title-cards'>
-      <h2>{category?title : 'Popular on Netify'} </h2>
+      <h2>{title?title : 'Popular on Netify'} </h2>
       <div className="card-list" ref={cardsRef}>
         {cards_data.map((card, index) => {
           return (
