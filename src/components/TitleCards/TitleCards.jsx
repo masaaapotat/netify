@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './TitleCards.css';
-import cards_data from '../../assets/cards/Cards_data';
+// import cards_data from '../../assets/cards/Cards_data';
 
 const TitleCards = ({title, category}) => {
 // its an empty array cos we're fetching the data from the api in the form of an array
@@ -28,6 +28,7 @@ const TitleCards = ({title, category}) => {
   .then(response => response.json())
   .then(response => setApiData(response.results))
   .catch(err => console.error(err));
+  // sets up the wheel event listener
     const currentCardsRef = cardsRef.current;
     currentCardsRef.addEventListener('wheel', handleWheel);
 
