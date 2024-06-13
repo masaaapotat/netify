@@ -4,17 +4,16 @@ import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutl
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const Player = () => {
-  // creating a variable to sote our response data
-  // initializing the object with the some value that is the name and key
-  const [apiData, setApiData]=useState({
-    name:'',
-    key:'',
-    published_at:'',
-    typeof:''
+  // Creating a state variable to store our response data
+  const [apiData, setApiData] = useState({
+    name: '',
+    key: '',
+    published_at: '',
+    site: "",
+    type: ''
+  });
 
-
-  })
-
+  // Options for the fetch request including the API key in the headers
   const options = {
     method: 'GET',
     headers: {
@@ -23,29 +22,35 @@ const Player = () => {
     }
   };
   
- useEffect(()=>{
-  fetch('https://api.themoviedb.org/3/movie/653346/videos?language=en-US', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
- },[])
-  
+  // useEffect to fetch data from the API when the component mounts
+  useEffect(() => {
+    fetch('https://api.themoviedb.org/3/movie/653346/videos?language=en-US', options)
+      .then(response => response.json()) // Convert the response to JSON
+      .then(response => setApiData(response.results[0])) // Set the first result in the state
+      .catch(err => console.error(err)); 
+  }, []);
+
   return (
     <div className="player">
+      {/* Back arrow icon */}
       <ArrowCircleLeftOutlinedIcon className="back-icon" />
+      {/* iframe to display the YouTube video */}
       <iframe
         width="80%"
         height="70%"
-        src="https://www.youtube.com/embed/IFkHrwtHRY8"
-        title="trailer"
+        src={`https://www.youtube.com/embed/${apiData.key}`} // Dynamic video key
+        title={apiData.name} // Dynamic title from API data
         frameBorder="0"
         allowFullScreen
       ></iframe>
+      {/* Forward arrow icon */}
       <ArrowForwardIosIcon className="forward-icon" />
+      {/* Display additional information from the API */}
       <div className="player-info">
-        <p>Publish Date</p>
-        <p>Name</p>
-        <p>Type</p>
+        <p>{apiData.published_at.slice(0,10)}</p> 
+        <p>{apiData.name}</p> 
+        <p>{apiData.site}</p> 
+        <p>{apiData.type}</p> 
       </div>
     </div>
   );
