@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./Player.css";
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useParams } from "react-router-dom";
 
 const Player = () => {
+
+
+  // Getting the movie Id from the URL using useParams
+  const {id}= useParams()
+
   // Creating a state variable to store our response data
   const [apiData, setApiData] = useState({
     name: '',
@@ -24,7 +30,8 @@ const Player = () => {
   
   // useEffect to fetch data from the API when the component mounts
   useEffect(() => {
-    fetch('https://api.themoviedb.org/3/movie/653346/videos?language=en-US', options)
+    // Fetching data from the API using the movie id from the URL
+    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
       .then(response => response.json()) // Convert the response to JSON
       .then(response => setApiData(response.results[0])) // Set the first result in the state
       .catch(err => console.error(err)); 
