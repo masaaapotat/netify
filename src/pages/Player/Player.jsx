@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Player.css";
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const Player = () => {
+  // creating a variable to sote our response data
+  // initializing the object with the some value that is the name and key
+  const [apiData, setApiData]=useState({
+    name:'',
+    key:'',
+    published_at:'',
+    typeof:''
+
+
+  })
 
   const options = {
     method: 'GET',
@@ -13,10 +23,12 @@ const Player = () => {
     }
   };
   
+ useEffect(()=>{
   fetch('https://api.themoviedb.org/3/movie/653346/videos?language=en-US', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+ },[])
   
   return (
     <div className="player">
