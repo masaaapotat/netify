@@ -115,3 +115,12 @@
 .need-help:hover {
   color: #fff;
 }
+@media(max-width:500px){
+  .login{
+    padding: 15px 5%;
+  }
+  .login-form{
+    padding: 20px;
+    margin-top: 30px;
+  }
+}
