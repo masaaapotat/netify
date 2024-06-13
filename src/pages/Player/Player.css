@@ -19,7 +19,13 @@
     cursor: pointer;
     color: #fff;
     transition: transform 0.3s ease;
+
   }
+  .back-icon {
+    font-size: 50px; 
+    cursor: pointer; 
+   }
+  
   
   .back-icon:hover, .forward-icon:hover {
     transform: scale(1.1);
