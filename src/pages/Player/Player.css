@@ -1,0 +1,56 @@
+/* Player.css */
+
+.player {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    position: relative;
+  }
+  
+  .back-icon, .forward-icon {
+    position: absolute;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .back-icon:hover, .forward-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  .back-icon {
+    left: 20px;
+  }
+  
+  .forward-icon {
+    right: 20px;
+  }
+  
+  .player iframe {
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+  }
+  
+  .player-info {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    padding: 10px 20px;
+    /* background: rgba(255, 255, 255, 0.1); */
+    border-radius: 10px;
+  }
+  
+  .player-info p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
