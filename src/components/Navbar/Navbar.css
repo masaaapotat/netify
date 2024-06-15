@@ -4,7 +4,7 @@
     display: flex;
     /* left column alinged side by side */
     justify-content: space-between;
-    /* navbar at top */
+    
     position: fixed;
     font-size: 14px;
     color: #e5e5e5;

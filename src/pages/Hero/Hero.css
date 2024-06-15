@@ -1,0 +1,11 @@
+.loading,
+.error {
+  color: white;
+  font-size: 1.5em;
+}
+
+
+.image-loading{
+    display:flex;
+    flex-direction:column;
+    width:512px}
