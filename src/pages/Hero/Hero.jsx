@@ -34,7 +34,27 @@ const Hero = () => {
       });
   }, []);
 
-  if (isLoading) return <div className="loading">Loading...</div>;
+  if (isLoading)
+    return (
+      <div class="loader">
+      <div class="circle">
+        <div class="dot"></div>
+        <div class="outline"></div>
+      </div>
+      <div class="circle">
+        <div class="dot"></div>
+        <div class="outline"></div>
+      </div>
+      <div class="circle">
+        <div class="dot"></div>
+        <div class="outline"></div>
+      </div>
+      <div class="circle">
+        <div class="dot"></div>
+        <div class="outline"></div>
+      </div>
+    </div>
+    );
 
   if (!movie) return <div className="error">Error loading data</div>;
 
