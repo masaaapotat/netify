@@ -52,7 +52,13 @@ const Player = () => {
       />
 
       {isLoading ? ( // Display loading state
-        <p>Loading movie data...</p>
+        // <p>Loading movie data...</p>
+        <div class="loading-wave">
+          <div class="loading-bar"></div>
+          <div class="loading-bar"></div>
+          <div class="loading-bar"></div>
+          <div class="loading-bar"></div>
+        </div>
       ) : movieData.hasOwnProperty("id") ? (
         <>
           {/* Display video trailer if available */}
@@ -73,7 +79,9 @@ const Player = () => {
             <p>{movieData.overview}</p>
             <p>Release Date: {movieData.release_date}</p>
             {movieData.production_companies?.length > 0 && (
-              <p>Production Company: {movieData.production_companies[0].name}</p>
+              <p>
+                Production Company: {movieData.production_companies[0].name}
+              </p>
             )}
           </div>
         </>
