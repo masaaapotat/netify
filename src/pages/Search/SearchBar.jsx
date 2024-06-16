@@ -85,7 +85,14 @@ const SearchBar = () => {
       </div>
       {/* Display loading message while fetching data */}
 
-      {isLoading && <p>Loading...</p>}
+      {isLoading && (
+        <p>Loading...</p>
+        // <div class="loader">
+        //   <li class="ball"></li>
+        //   <li class="ball"></li>
+        //   <li class="ball"></li>
+        // </div>
+      )}
       {/* Display search results if available */}
 
       {searchResults.length > 0 && (
@@ -96,13 +103,12 @@ const SearchBar = () => {
             // Display each search result title
             // <li key={result.id}>{result.title}</li>
             <li key={result.id} onClick={() => handleMovieSelect(result.id)}>
-            {result.title}
-          </li>
+              {result.title}
+            </li>
           ))}
         </ul>
       )}
     </div>
-    
   );
 };
 
