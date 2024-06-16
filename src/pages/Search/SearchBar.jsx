@@ -39,7 +39,7 @@ const SearchBar = () => {
           // Set loading state to false after fetch completes
           setIsLoading(false);
         }
-      }else {
+      } else {
         setSearchResults([]); // Clear search results if search query is empty
       }
     };
@@ -66,19 +66,22 @@ const SearchBar = () => {
       fetchData();
     }
   };
+  const handleMovieSelect = (movieId) => {
+    navigate(`/player/${movieId}`); // Set selected movie ID when a search result is clicked
+  };
 
   return (
     <div className="navbar-center">
       <div className="search-container">
-      <input
-        type="text"
-        placeholder="Search movies..."
-        value={searchQuery}
-        onChange={handleChange}
-        onKeyPress={handleKeyPress}
-        className="search-input" // Apply class for search input styling
-      />
-      <SearchIcon className="search-icon" onClick={handleSearch} />
+        <input
+          type="text"
+          placeholder="Search movies..."
+          value={searchQuery}
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
+          className="search-input" // Apply class for search input styling
+        />
+        <SearchIcon className="search-icon" onClick={handleSearch} />
       </div>
       {/* Display loading message while fetching data */}
 
@@ -86,15 +89,20 @@ const SearchBar = () => {
       {/* Display search results if available */}
 
       {searchResults.length > 0 && (
-         <ul className="search-results"> {/* Apply class for search results styling */}
-        
+        <ul className="search-results">
+          {" "}
+          {/* Apply class for search results styling */}
           {searchResults.map((result) => (
             // Display each search result title
-            <li key={result.id}>{result.title}</li>
+            // <li key={result.id}>{result.title}</li>
+            <li key={result.id} onClick={() => handleMovieSelect(result.id)}>
+            {result.title}
+          </li>
           ))}
         </ul>
       )}
     </div>
+    
   );
 };
 
