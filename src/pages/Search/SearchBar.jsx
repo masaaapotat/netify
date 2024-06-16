@@ -39,6 +39,8 @@ const SearchBar = () => {
           // Set loading state to false after fetch completes
           setIsLoading(false);
         }
+      }else {
+        setSearchResults([]); // Clear search results if search query is empty
       }
     };
 
@@ -67,6 +69,7 @@ const SearchBar = () => {
 
   return (
     <div className="navbar-center">
+      <div className="search-container">
       <input
         type="text"
         placeholder="Search movies..."
@@ -76,6 +79,7 @@ const SearchBar = () => {
         className="search-input" // Apply class for search input styling
       />
       <SearchIcon className="search-icon" onClick={handleSearch} />
+      </div>
       {/* Display loading message while fetching data */}
 
       {isLoading && <p>Loading...</p>}

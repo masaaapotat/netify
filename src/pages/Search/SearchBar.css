@@ -1,5 +1,13 @@
+/* SearchBar.css */
+
 .navbar-center {
     position: relative;
+    display: flex;
+    flex-direction: column; /* Display search results beneath search bar */
+    align-items: center;
+  }
+  
+  .search-container {
     display: flex;
     align-items: center;
   }
@@ -21,17 +29,15 @@
   
   .search-results {
     list-style-type: none;
-    padding: 4px;
-    margin: 8px 0;
+    padding: 0;
+    margin: 8px 0 0; /* Adjust margin as needed */
     max-height: 200px; /* Limit height to prevent overflow */
     overflow-y: auto; /* Enable vertical scroll if necessary */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    background-color: black;
-    z-index: 10; /* Ensure results appear above other content */
-    width: 300px; /* Match width of input */
+    background-color:black;
+    width: 100%; /* Stretch to match parent width */
   }
   
   .search-results li {
@@ -40,10 +46,6 @@
   }
   
   .search-results li:hover {
-    background-color: red;
-  }
-  
-  .search-results li:first-child {
-    border-top: none;
+    background-color:red;
   }
   
