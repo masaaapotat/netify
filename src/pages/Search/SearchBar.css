@@ -1,0 +1,49 @@
+.navbar-center {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-right: 8px;
+    width: 200px; /* Adjust width as needed */
+  }
+  
+  .search-icon {
+    cursor: pointer;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .search-results {
+    list-style-type: none;
+    padding: 4px;
+    margin: 8px 0;
+    max-height: 200px; /* Limit height to prevent overflow */
+    overflow-y: auto; /* Enable vertical scroll if necessary */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    background-color: black;
+    z-index: 10; /* Ensure results appear above other content */
+    width: 300px; /* Match width of input */
+  }
+  
+  .search-results li {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .search-results li:hover {
+    background-color: red;
+  }
+  
+  .search-results li:first-child {
+    border-top: none;
+  }
+  
