@@ -52,13 +52,13 @@ const Player = () => {
       />
 
       {isLoading ? ( // Display loading state
-        // <p>Loading movie data...</p>
-        <div class="loading-wave">
-          <div class="loading-bar"></div>
-          <div class="loading-bar"></div>
-          <div class="loading-bar"></div>
-          <div class="loading-bar"></div>
-        </div>
+        <p>Loading movie data...</p>
+        // <div class="loading-wave">
+        //   <div class="loading-bar"></div>
+        //   <div class="loading-bar"></div>
+        //   <div class="loading-bar"></div>
+        //   <div class="loading-bar"></div>
+        // </div>
       ) : movieData.hasOwnProperty("id") ? (
         <>
           {/* Display video trailer if available */}
