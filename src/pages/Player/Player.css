@@ -1,62 +1,75 @@
-
-
 .player {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #000;
-    color: #fff;
-    position: relative;
-  }
-  
-  .back-icon, .forward-icon {
-    position: absolute;
-    top: 20px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    color: #fff;
-    transition: transform 0.3s ease;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-  }
-  .back-icon {
-    font-size: 50px; 
-    cursor: pointer; 
-   }
-  
-  
-  .back-icon:hover, .forward-icon:hover {
-    transform: scale(1.1);
-  }
-  
-  .back-icon {
-    left: 20px;
-  }
-  
-  .forward-icon {
-    right: 20px;
-  }
-  
-  .player iframe {
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px;
-  }
-  
-  .player-info {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    padding: 10px 20px;
-    /* background: rgba(255, 255, 255, 0.1); */
-    border-radius: 10px;
-  }
-  
-  .player-info p {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  
+.back-icon, .forward-icon {
+  position: absolute;
+  top: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.back-icon {
+  font-size: 50px;
+  left: 20px;
+}
+
+.forward-icon {
+  right: 20px;
+}
+
+.back-icon:hover, .forward-icon:hover {
+  transform: scale(1.1);
+}
+
+.player iframe {
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+  width: 80%;
+  height: 70%;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.player-info img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.player-info h2 {
+  margin: 10px 0;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.player-info p {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
