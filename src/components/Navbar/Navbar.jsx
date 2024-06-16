@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import './Navbar.css';
+import SearchBar from '../../pages/Search/SearchBar';
 import logo from '../../assets/mylogo.jpg';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
@@ -47,7 +48,9 @@ const Navbar = () => {
       </div>
       {/* Icons */}
       <div className="navbar-right">
-        <SearchIcon className="icon" />
+        {/* Render the SearchBar component */}
+      <SearchBar  className="icon" />
+        {/* <SearchIcon className="icon" /> */}
         <p>Children</p>
         <NotificationsActiveIcon className="icon" />
         <div className="navbar-profile">
