@@ -76,7 +76,7 @@ const Player = () => {
           {/* Display additional information */}
           <div className="player-info">
             <h2>{movieData.title}</h2>
-            <p>{movieData.overview}</p>
+            <p>{movieData.overview.slice(0, 200)}</p>
             <p>Release Date: {movieData.release_date}</p>
             {movieData.production_companies?.length > 0 && (
               <p>

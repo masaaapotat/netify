@@ -1,3 +1,4 @@
+// search bar code
 import React, { useState, useEffect } from "react";
 import "./SearchBar.css";
 import SearchIcon from "@mui/icons-material/Search";
@@ -78,7 +79,7 @@ const SearchBar = () => {
           placeholder="Search movies..."
           value={searchQuery}
           onChange={handleChange}
-          onKeyPress={handleKeyPress}
+          onFocus={handleKeyPress}
           className="search-input" // Apply class for search input styling
         />
         <SearchIcon className="search-icon" onClick={handleSearch} />

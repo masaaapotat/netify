@@ -68,7 +68,7 @@ const Hero = () => {
       />
       <div className="hero-caption">
         <h1>{movie.title}</h1>
-        <p>{movie.overview}</p>
+        <p>{movie.overview.slice(0, 150)}...</p>  
         <div className="hero-btn">
           <button className="btn">
             <PlayArrowIcon className="hero-btn-icon" />
