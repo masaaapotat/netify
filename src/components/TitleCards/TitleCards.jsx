@@ -2,13 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import './TitleCards.css';
 import { Link } from 'react-router-dom';
 
-const TitleCards = ({ title, category }) => {
-  // State to store the API data, initialized as an empty array
+const TitleCards = ({ title, category, movies }) => {
   const [apiData, setApiData] = useState([]);
-  // Ref to access the card list DOM element
   const cardsRef = useRef();
 
-  // Options for the fetch request including the API key in the headers
   const options = {
     method: 'GET',
     headers: {
@@ -17,45 +14,39 @@ const TitleCards = ({ title, category }) => {
     }
   };
 
-  // Handle horizontal scrolling with the mouse wheel
   const handleWheel = (event) => {
     event.preventDefault();
-    cardsRef.current.scrollLeft += event.deltaY; // Use scrollLeft instead of scrollleft
+    cardsRef.current.scrollLeft += event.deltaY;
   };
 
-  // useEffect to fetch data from the API when the component mounts
   useEffect(() => {
-    // Fetch data from the API based on the category prop or default to 'now_playing'
-    fetch(`https://api.themoviedb.org/3/movie/${category ? category : 'now_playing'}?language=en-US&page=1`, options)
-      .then(response => response.json()) // Convert the response to JSON
-      .then(response => setApiData(response.results)) // Set the results in the state
-      .catch(err => console.error(err)); // Log any errors
+    if (!movies) {
+      fetch(`https://api.themoviedb.org/3/movie/${category ? category : 'now_playing'}?language=en-US&page=1`, options)
+        .then(response => response.json())
+        .then(response => setApiData(response.results))
+        .catch(err => console.error(err));
+    }
 
-    // Sets up the wheel event listener for horizontal scrolling
     const currentCardsRef = cardsRef.current;
     currentCardsRef.addEventListener('wheel', handleWheel);
 
-    // Cleanup the event listener on component unmount
     return () => {
       currentCardsRef.removeEventListener('wheel', handleWheel);
     };
-  }, [category]); // The useEffect depends on the category prop
+  }, [category, movies]);
+
+  const movieList = movies || apiData;
 
   return (
     <div className='title-cards'>
-      <h2>{title ? title : 'Popular on Netflix'}</h2> {/* Display the title or default text */}
+      <h2>{title ? title : 'Popular on Netflix'}</h2>
       <div className="card-list" ref={cardsRef}>
-        {/*  maps over the apiData array to generate a list of movie cards */}
-        {apiData.map((card, index) => {
-          return (
-            // Link tag to navigate to the player component with the card id
-            <Link to={`/player/${card.id}`} className="card" key={index}>
-              {/* Concatenate the file name and the image path */}
-              <img src={`https://image.tmdb.org/t/p/w500${card.backdrop_path}`} alt={card.original_title} />
-              <p>{card.original_title}</p>
-            </Link>
-          );
-        })}
+        {movieList.map((card, index) => (
+          <Link to={`/player/${card.id}`} className="card" key={index}>
+            <img src={`https://image.tmdb.org/t/p/w500${card.backdrop_path}`} alt={card.original_title} />
+            <p>{card.original_title}</p>
+          </Link>
+        ))}
       </div>
     </div>
   );

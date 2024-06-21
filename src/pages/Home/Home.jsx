@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css";
 import Hero from "../Hero/Hero";
 import Navbar from "../../components/Navbar/Navbar";
+import FavoritesSection from "../Search/FavoritesSection";
 // import hero_banner from "../../assets/hero_banner.jpg";
 // import hero_title from "../../assets/hero_title.png";
 // import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -40,6 +41,7 @@ const Home = () => {
         </div>
       </div> */}
       <div className="more-cards">
+      <FavoritesSection />
         <TitleCards title={"Blockbuster Movies"} category="top_rated" />
         <TitleCards title={"Only on Netflix"} category="popular" />
         <TitleCards title={"Upcoming"} category="upcoming" />
