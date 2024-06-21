@@ -125,7 +125,7 @@ const SearchBar = () => {
           onKeyDown={handleKeyPress}
           className="search-input"
         />
-        {genres.length > 0 ? (
+        {/* {genres.length > 0 ? (
           <GenreDropdown
             genres={genres}
             selectedGenre={selectedGenre}
@@ -133,7 +133,7 @@ const SearchBar = () => {
           />
         ) : (
           <p>Loading genres...</p>
-        )}
+        )} */}
         <SearchIcon className="search-icon" onClick={handleSearch} />
       </div>
       {isLoading && <p>Loading...</p>}

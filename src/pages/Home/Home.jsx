@@ -43,7 +43,7 @@ const Home = () => {
       <div className="more-cards">
       <FavoritesSection />
         <TitleCards title={"Blockbuster Movies"} category="top_rated" />
-        <TitleCards title={"Only on Netflix"} category="popular" />
+        <TitleCards title={"Only on Netify"} category="popular" />
         <TitleCards title={"Upcoming"} category="upcoming" />
         <TitleCards title={"Top Pics for you"} category="now_playing" />
       </div>

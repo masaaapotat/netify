@@ -69,7 +69,7 @@ const Footer = () => {
       <p className="copyright-text">
         {/*  Date object to get the current year. */}
         <p>
-          &copy; {new Date().getFullYear()} Netflix Clone. All rights reserved.
+          &copy; {new Date().getFullYear()} Netify Inc. All rights reserved.
         </p>
       </p>
     </div>
