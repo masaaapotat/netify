@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Player.css";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useNavigate, useParams } from "react-router-dom";
 
 const Player = () => {
@@ -8,6 +10,7 @@ const Player = () => {
   const { id } = useParams();
   const [movieData, setMovieData] = useState({});
   const [isLoading, setIsLoading] = useState(true); // Loading state
+  const [isFavorite, setIsFavorite] = useState(false); // Favorite state
 
   useEffect(() => {
     const fetchMovieData = async () => {
@@ -39,8 +42,28 @@ const Player = () => {
     fetchMovieData();
   }, [id]);
 
+  useEffect(() => {
+    // Check local storage to see if the movie is marked as favorite
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsFavorite(favorites.includes(id));
+  }, [id]);
+
   const handleBackClick = () => {
     navigate(-1);
+  };
+
+  const toggleFavorite = () => {
+    // Toggle favorite state
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (isFavorite) {
+      // Remove from favorites
+      const updatedFavorites = favorites.filter((fav) => fav !== id);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    } else {
+      // Add to favorites
+      localStorage.setItem("favorites", JSON.stringify([...favorites, id]));
+    }
+    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -53,12 +76,6 @@ const Player = () => {
 
       {isLoading ? ( // Display loading state
         <p>Loading movie data...</p>
-        // <div class="loading-wave">
-        //   <div class="loading-bar"></div>
-        //   <div class="loading-bar"></div>
-        //   <div class="loading-bar"></div>
-        //   <div class="loading-bar"></div>
-        // </div>
       ) : movieData.hasOwnProperty("id") ? (
         <>
           {/* Display video trailer if available */}
@@ -82,6 +99,13 @@ const Player = () => {
               <p>
                 Production Company: {movieData.production_companies[0].name}
               </p>
+            )}
+
+            {/* Toggle favorite button */}
+            {isFavorite ? (
+              <FavoriteIcon color="error" onClick={toggleFavorite} />
+            ) : (
+              <FavoriteBorderIcon onClick={toggleFavorite} />
             )}
           </div>
         </>

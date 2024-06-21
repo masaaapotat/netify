@@ -36,6 +36,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: black;
   width: 100%; 
+  position: absolute;
+  top: 50px;
   
 }
 
@@ -92,4 +94,93 @@
     transform: translateY(-90px);
     scale: 0.3;
   }
+}
+
+
+
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center items horizontally */
+  margin-bottom: 20px; /* Add margin to separate from search results */
+  position: relative; /* Ensure positioning context for absolute dropdown */
+}
+
+.search-input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 8px;
+  width: 200px;
+}
+
+.genre-dropdown {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+.search-icon {
+  cursor: pointer;
+  color: #333;
+  font-size: 24px;
+}
+
+.search-results {
+  list-style-type: none;
+  padding: 0;
+  margin: 8px 0 0;
+  max-height: 200px;
+  overflow-y: auto; /* Enable vertical scroll if necessary */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: blaxk; /* Adjust background color */
+  width: 100%; 
+  position: absolute;
+  top: calc(100% + 10px); /* Position below search container */
+  z-index: 100; /* Ensure it appears above other content */
+}
+
+.search-results li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+
+
+.loading-text {
+  position: absolute;
+  top: calc(100% + 10px); /* Position loading text below search container */
+  margin-top: 10px; /* Add margin for separation */
+}
+
+.suggestions {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: black;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestions li {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.suggestions li:hover {
+  background-color: red;
 }

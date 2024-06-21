@@ -1,74 +1,117 @@
-// search bar code
 import React, { useState, useEffect } from "react";
 import "./SearchBar.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
+import GenreDropdown from "./Genredropdown";
 
 const SearchBar = () => {
-  // State to store the search query
   const [searchQuery, setSearchQuery] = useState("");
-  // State to store the search results
   const [searchResults, setSearchResults] = useState([]);
-  // State to manage loading state
+  const [genres, setGenres] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [suggestions, setSuggestions] = useState([]); // State for suggestions
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Function to fetch data from API based on search query
-    const fetchData = async () => {
-      // Check if search query is not empty
-      if (searchQuery.trim() !== "") {
-        // Set loading state to true
-        setIsLoading(true);
-        try {
-          // Fetch data from the API using the search query and API key
-
-          const response = await fetch(
-            `https://api.themoviedb.org/3/search/movie?api_key=527433f85c04959fdf15e2e588f9122d&query=${encodeURIComponent(
-              searchQuery
-            )}`
-          );
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          const data = await response.json();
-          // Update state with search results
-          setSearchResults(data.results);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        } finally {
-          // Set loading state to false after fetch completes
-          setIsLoading(false);
+    const fetchGenres = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=527433f85c04959fdf15e2e588f9122d`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-      } else {
-        setSearchResults([]); // Clear search results if search query is empty
+        const data = await response.json();
+        console.log("Fetched genres:", data.genres);
+        setGenres(data.genres);
+      } catch (error) {
+        console.error("Error fetching genres:", error);
       }
     };
 
-    fetchData(); // Call fetchData function
-  }, [searchQuery]); // Dependency array runs when searchQuery changes
+    fetchGenres();
+  }, []);
 
-  // Function to handle input change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchQuery.trim()) {
+        fetchSuggestions();
+      } else {
+        setSuggestions([]);
+      }
+    }, 300); // Delay before fetching suggestions (adjust as needed)
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  const fetchSuggestions = async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=527433f85c04959fdf15e2e588f9122d&query=${encodeURIComponent(
+          searchQuery
+        )}`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log("Fetched suggestions:", data.results);
+      setSuggestions(data.results);
+    } catch (error) {
+      console.error("Error fetching suggestions:", error);
+      setSuggestions([]);
+    }
+  };
+
+  const handleSelectSuggestion = (movieId) => {
+    navigate(`/player/${movieId}`);
+    setSearchQuery(""); // Clear search query after selection if desired
+    setSuggestions([]); // Clear suggestions after selection
+  };
+
   const handleChange = (event) => {
-    //
     setSearchQuery(event.target.value);
   };
 
-  // Function to handle search on button click
+  const handleGenreChange = (event) => {
+    setSelectedGenre(event.target.value);
+  };
+
   const handleSearch = () => {
     fetchData();
   };
 
-  // Function to handle search on Enter key press
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      // Trigger fetchData function to perform search on Enter key press
-
       fetchData();
     }
   };
-  const handleMovieSelect = (movieId) => {
-    navigate(`/player/${movieId}`); // Set selected movie ID when a search result is clicked
+
+  const fetchData = async () => {
+    if (searchQuery.trim() !== "" || selectedGenre) {
+      setIsLoading(true);
+      try {
+        const genreParam = selectedGenre ? `&with_genres=${selectedGenre}` : "";
+        const response = await fetch(
+          `https://api.themoviedb.org/3/search/movie?api_key=527433f85c04959fdf15e2e588f9122d&query=${encodeURIComponent(
+            searchQuery
+          )}${genreParam}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        console.log("Fetched search results:", data.results);
+        setSearchResults(data.results);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      setSearchResults([]);
+    }
   };
 
   return (
@@ -79,31 +122,37 @@ const SearchBar = () => {
           placeholder="Search movies..."
           value={searchQuery}
           onChange={handleChange}
-          onFocus={handleKeyPress}
-          className="search-input" // Apply class for search input styling
+          onKeyDown={handleKeyPress}
+          className="search-input"
         />
+        {genres.length > 0 ? (
+          <GenreDropdown
+            genres={genres}
+            selectedGenre={selectedGenre}
+            handleGenreChange={handleGenreChange}
+          />
+        ) : (
+          <p>Loading genres...</p>
+        )}
         <SearchIcon className="search-icon" onClick={handleSearch} />
       </div>
-      {/* Display loading message while fetching data */}
-
-      {isLoading && (
-        <p>Loading...</p>
-        // <div class="loader">
-        //   <li class="ball"></li>
-        //   <li class="ball"></li>
-        //   <li class="ball"></li>
-        // </div>
+      {isLoading && <p>Loading...</p>}
+      {suggestions.length > 0 && (
+        <ul className="suggestions">
+          {suggestions.map((suggestion) => (
+            <li
+              key={suggestion.id}
+              onClick={() => handleSelectSuggestion(suggestion.id)}
+            >
+              {suggestion.title}
+            </li>
+          ))}
+        </ul>
       )}
-      {/* Display search results if available */}
-
       {searchResults.length > 0 && (
         <ul className="search-results">
-          {" "}
-          {/* Apply class for search results styling */}
           {searchResults.map((result) => (
-            // Display each search result title
-            // <li key={result.id}>{result.title}</li>
-            <li key={result.id} onClick={() => handleMovieSelect(result.id)}>
+            <li key={result.id} onClick={() => handleSelectSuggestion(result.id)}>
               {result.title}
             </li>
           ))}
